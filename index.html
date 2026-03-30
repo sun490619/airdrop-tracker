@@ -234,6 +234,79 @@
       color: var(--accent-purple);
     }
 
+    .news-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .news-badge {
+      margin-bottom: 0;
+    }
+
+    .news-source-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .news-source-tag.twitter {
+      background: rgba(29, 161, 242, 0.15);
+      color: #1da1f2;
+    }
+
+    .news-source-tag.twitter:hover {
+      background: rgba(29, 161, 242, 0.25);
+    }
+
+    .news-source-tag.discord {
+      background: rgba(88, 101, 242, 0.15);
+      color: #5865f2;
+    }
+
+    .news-source-tag.discord:hover {
+      background: rgba(88, 101, 242, 0.25);
+    }
+
+    .news-source-tag.medium {
+      background: rgba(0, 200, 83, 0.15);
+      color: #00c853;
+    }
+
+    .news-source-tag.medium:hover {
+      background: rgba(0, 200, 83, 0.25);
+    }
+
+    .news-source-tag.coindesk,
+    .news-source-tag.cointelegraph,
+    .news-source-tag.coingecko {
+      background: rgba(249, 115, 22, 0.15);
+      color: #f97316;
+    }
+
+    .news-source-tag.coindesk:hover,
+    .news-source-tag.cointelegraph:hover,
+    .news-source-tag.coingecko:hover {
+      background: rgba(249, 115, 22, 0.25);
+    }
+
+    .news-source-tag.website,
+    .news-source-tag.official {
+      background: rgba(0, 255, 136, 0.15);
+      color: var(--accent-green);
+    }
+
+    .news-source-tag.website:hover,
+    .news-source-tag.official:hover {
+      background: rgba(0, 255, 136, 0.25);
+    }
+
     .news-project {
       font-size: 0.85rem;
       font-weight: 600;
@@ -254,7 +327,7 @@
       opacity: 0.7;
     }
 
-    .news-source {
+    .news-link {
       display: inline-block;
       font-size: 0.75rem;
       color: var(--accent-blue);
@@ -266,7 +339,7 @@
       transition: all 0.2s;
     }
 
-    .news-source:hover {
+    .news-link:hover {
       background: rgba(59, 130, 246, 0.2);
       text-decoration: underline;
     }
@@ -688,24 +761,27 @@
         type: "update",
         content: "Phase 2 rewards now active. Early supporters getting 2x multiplier on points.",
         date: "Mar 2026",
-        sourceUrl: "https://app.grass.io/dashboard",
-        sourceName: "Official Dashboard"
+        sourceUrl: "https://twitter.com/GrassFoundation/status/example",
+        sourceName: "Twitter",
+        sourceIcon: "𝕏"
       },
       {
         project: "HoneyGain",
         type: "task",
         content: "JumpStory feature launched - Earn more with content delivery tasks.",
         date: "Mar 2026",
-        sourceUrl: "https://www.honeygain.com/content-delivery/",
-        sourceName: "Official Website"
+        sourceUrl: "https://twitter.com/HoneyGainTeam/status/example",
+        sourceName: "Twitter",
+        sourceIcon: "𝕏"
       },
       {
         project: "Bless Network",
         type: "update",
         content: "Validator node registration open. Limited spots available.",
         date: "Mar 2026",
-        sourceUrl: "https://bless.network/dashboard",
-        sourceName: "Official Dashboard"
+        sourceUrl: "https://discord.com/channels/bless-network/example",
+        sourceName: "Discord",
+        sourceIcon: "💬"
       },
       {
         project: "NodePay",
@@ -713,7 +789,8 @@
         content: "NPT token economy model announced. Accumulate points before launch.",
         date: "Mar 2026",
         sourceUrl: "https://nodepay.ai/learn",
-        sourceName: "Official Website"
+        sourceName: "Official Website",
+        sourceIcon: "🌐"
       },
       {
         project: "DataHive",
@@ -721,15 +798,17 @@
         content: "Platform v2.0 released with new annotation tools and higher payouts.",
         date: "Feb 2026",
         sourceUrl: "https://datahive.ai",
-        sourceName: "Official Website"
+        sourceName: "Official Website",
+        sourceIcon: "🌐"
       },
       {
         project: "Perceptrons",
         type: "update",
         content: "Testnet v2 public beta launched. Join compute network now.",
         date: "Mar 2026",
-        sourceUrl: "https://perceptrons.xyz",
-        sourceName: "Official Website"
+        sourceUrl: "https://medium.com/perceptrons-xyz/example",
+        sourceName: "Medium",
+        sourceIcon: "📝"
       }
     ];
 
@@ -1082,12 +1161,17 @@
     function renderNewsCard(news) {
       return `
         <div class="news-card ${news.type}">
-          <span class="news-badge ${getNewsBadgeClass(news.type)}">${getNewsBadgeText(news.type)}</span>
+          <div class="news-top">
+            <span class="news-badge ${getNewsBadgeClass(news.type)}">${getNewsBadgeText(news.type)}</span>
+            <a href="${news.sourceUrl}" target="_blank" class="news-source-tag ${news.sourceName.toLowerCase()}">
+              ${news.sourceIcon} ${news.sourceName}
+            </a>
+          </div>
           <div class="news-project">${news.project}</div>
           <div class="news-content">${news.content}</div>
           <div class="news-date">${news.date}</div>
-          <a href="${news.sourceUrl}" target="_blank" class="news-source">
-            📖 Read more on ${news.sourceName} →
+          <a href="${news.sourceUrl}" target="_blank" class="news-link">
+            🔗 View Source →
           </a>
         </div>
       `;
