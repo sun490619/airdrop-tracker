@@ -254,6 +254,23 @@
       opacity: 0.7;
     }
 
+    .news-source {
+      display: inline-block;
+      font-size: 0.75rem;
+      color: var(--accent-blue);
+      text-decoration: none;
+      margin-top: 8px;
+      padding: 4px 8px;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .news-source:hover {
+      background: rgba(59, 130, 246, 0.2);
+      text-decoration: underline;
+    }
+
     /* Category Section */
     .category-section {
       max-width: 1400px;
@@ -463,14 +480,14 @@
       text-decoration: underline;
     }
 
-    .funding-badge {
-      display: inline-block;
-      background: rgba(0, 255, 136, 0.15);
-      color: var(--accent-green);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
+    .funding-link {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+
+    .funding-link:hover {
+      text-decoration: underline;
     }
 
     /* Instructions */
@@ -664,54 +681,55 @@
 
   <script>
     // Project News Data
+    // Project News - All items MUST have verified source URL
     const projectNews = [
       {
         project: "Grass",
         type: "update",
         content: "Phase 2 rewards now active. Early supporters getting 2x multiplier on points.",
-        date: "2 days ago"
-      },
-      {
-        project: "NodePay",
-        type: "funding",
-        content: "Just announced $15M Series A led by a16z. Token launch expected Q2 2026.",
-        date: "1 week ago"
-      },
-      {
-        project: "Bless Network",
-        type: "alert",
-        content: "Limited spots for validator nodes - Register now before they fill up!",
-        date: "3 days ago"
-      },
-      {
-        project: "OptimAI",
-        type: "task",
-        content: "New task: Run GPU inference nodes for extra 500 points/day.",
-        date: "5 days ago"
-      },
-      {
-        project: "Perceptrons",
-        type: "funding",
-        content: "Backed by BingX Ventures. Testnet v2 launching next month.",
-        date: "1 week ago"
-      },
-      {
-        project: "Kaisar Zero",
-        type: "update",
-        content: "Mainnet beta starts March 2026. All testnet participants guaranteed allocation.",
-        date: "4 days ago"
+        date: "Mar 2026",
+        sourceUrl: "https://app.grass.io/dashboard",
+        sourceName: "Official Dashboard"
       },
       {
         project: "HoneyGain",
         type: "task",
-        content: "New JumpStory feature pays 3x more for content delivery tasks.",
-        date: "1 day ago"
+        content: "JumpStory feature launched - Earn more with content delivery tasks.",
+        date: "Mar 2026",
+        sourceUrl: "https://www.honeygain.com/content-delivery/",
+        sourceName: "Official Website"
+      },
+      {
+        project: "Bless Network",
+        type: "update",
+        content: "Validator node registration open. Limited spots available.",
+        date: "Mar 2026",
+        sourceUrl: "https://bless.network/dashboard",
+        sourceName: "Official Dashboard"
+      },
+      {
+        project: "NodePay",
+        type: "update",
+        content: "NPT token economy model announced. Accumulate points before launch.",
+        date: "Mar 2026",
+        sourceUrl: "https://nodepay.ai/learn",
+        sourceName: "Official Website"
       },
       {
         project: "DataHive",
         type: "update",
-        content: "Partnership with TensorFlow announced. More AI training tasks coming.",
-        date: "2 weeks ago"
+        content: "Platform v2.0 released with new annotation tools and higher payouts.",
+        date: "Feb 2026",
+        sourceUrl: "https://datahive.ai",
+        sourceName: "Official Website"
+      },
+      {
+        project: "Perceptrons",
+        type: "update",
+        content: "Testnet v2 public beta launched. Join compute network now.",
+        date: "Mar 2026",
+        sourceUrl: "https://perceptrons.xyz",
+        sourceName: "Official Website"
       }
     ];
 
@@ -736,9 +754,10 @@
         ],
         details: {
           team: "Network Atlas",
-          funding: "$3.5M Seed",
+          funding: "Check DeFiLlama",
+          fundingUrl: "https://defillama.com/protocol/grass",
           website: "grass.io",
-          twitter: "@GrassCity"
+          twitter: "@GrassFoundation"
         },
         link: "https://app.grass.io/register?referralCode=PULG-t8x6DVhza-"
       },
@@ -760,7 +779,8 @@
         ],
         details: {
           team: "HoneyGain S.A.",
-          funding: "$500K Angel",
+          funding: "Check official channels",
+          fundingUrl: "https://www.honeygain.com",
           website: "honeygain.com",
           twitter: "@HoneyGainTeam"
         },
@@ -784,7 +804,8 @@
         ],
         details: {
           team: "Bless Labs",
-          funding: "Undisclosed",
+          funding: "Check official channels",
+          fundingUrl: "https://bless.network",
           website: "bless.network",
           twitter: "@BlessNetwork"
         },
@@ -808,7 +829,8 @@
         ],
         details: {
           team: "NodePay Labs",
-          funding: "$15M Series A (a16z)",
+          funding: "Check official channels",
+          fundingUrl: "https://nodepay.ai",
           website: "nodepay.ai",
           twitter: "@NodePayAI"
         },
@@ -834,7 +856,8 @@
         ],
         details: {
           team: "DataHive Foundation",
-          funding: "$8M Series A",
+          funding: "Check official channels",
+          fundingUrl: "https://datahive.ai",
           website: "datahive.ai",
           twitter: "@DataHiveAI"
         },
@@ -858,7 +881,8 @@
         ],
         details: {
           team: "OptimAI Network",
-          funding: "$12M Series B",
+          funding: "Check official channels",
+          fundingUrl: "https://node.optimai.network",
           website: "optimai.network",
           twitter: "@OptimAINetwork"
         },
@@ -882,7 +906,8 @@
         ],
         details: {
           team: "Minion Labs",
-          funding: "$4M Seed",
+          funding: "Check official channels",
+          fundingUrl: "https://www.minionlab.ai",
           website: "minionlab.ai",
           twitter: "@MinionLabAI"
         },
@@ -906,7 +931,8 @@
         ],
         details: {
           team: "Perceptrons XYZ",
-          funding: "$20M (BingX Ventures)",
+          funding: "Check official channels",
+          fundingUrl: "https://perceptrons.xyz",
           website: "perceptrons.xyz",
           twitter: "@PerceptronsXYZ"
         },
@@ -930,7 +956,8 @@
         ],
         details: {
           team: "Teneo Foundation",
-          funding: "$6M Seed",
+          funding: "Check official channels",
+          fundingUrl: "https://dashboard.teneo.pro",
           website: "teneo.pro",
           twitter: "@TeneoPro"
         },
@@ -956,7 +983,8 @@
         ],
         details: {
           team: "Kaisar Network",
-          funding: "$25M Series A",
+          funding: "Check official channels",
+          fundingUrl: "https://zero.kaisar.io",
           website: "kaisar.io",
           twitter: "@KaisarNetwork"
         },
@@ -980,7 +1008,8 @@
         ],
         details: {
           team: "ARO Labs",
-          funding: "$10M (Multicoin)",
+          funding: "Check official channels",
+          fundingUrl: "https://dashboard.aro.network",
           website: "aro.network",
           twitter: "@ARONetwork"
         },
@@ -1004,9 +1033,10 @@
         ],
         details: {
           team: "DataHive Foundation",
-          funding: "$8M Series A",
+          funding: "Check official channels",
+          fundingUrl: "https://datahive.ai",
           website: "datahive.ai",
-          twitter: "@DataHiveSensor"
+          twitter: "@DataHiveAI"
         },
         link: "https://datahive.ai?invite=sun490619"
       }
@@ -1056,6 +1086,9 @@
           <div class="news-project">${news.project}</div>
           <div class="news-content">${news.content}</div>
           <div class="news-date">${news.date}</div>
+          <a href="${news.sourceUrl}" target="_blank" class="news-source">
+            📖 Read more on ${news.sourceName} →
+          </a>
         </div>
       `;
     }
@@ -1102,7 +1135,7 @@
                 </div>
                 <div class="detail-item">
                   <span class="detail-label">Funding</span>
-                  <span class="detail-value"><span class="funding-badge">${details.funding}</span></span>
+                  <span class="detail-value"><a href="${details.fundingUrl}" target="_blank" class="funding-link">${details.funding} →</a></span>
                 </div>
                 <div class="detail-item">
                   <span class="detail-label">Website</span>
