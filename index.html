@@ -156,6 +156,19 @@
       padding: 40px 24px;
     }
 
+    .empty-news {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px dashed var(--border);
+    }
+
+    .empty-news p {
+      font-size: 0.9rem;
+    }
+
     .news-header {
       display: flex;
       align-items: center;
@@ -754,62 +767,20 @@
 
   <script>
     // Project News Data
-    // Project News - All items MUST have verified source URL
+    // Project News - Only add verified, real-time news
+    // When you have real news with source link, add it here
+    // Format: { project, type, content, date, sourceUrl, sourceName, sourceIcon }
     const projectNews = [
-      {
-        project: "Grass",
-        type: "update",
-        content: "Phase 2 rewards now active. Early supporters getting 2x multiplier on points.",
-        date: "Mar 2026",
-        sourceUrl: "https://twitter.com/GrassFoundation/status/example",
-        sourceName: "Twitter",
-        sourceIcon: "𝕏"
-      },
-      {
-        project: "HoneyGain",
-        type: "task",
-        content: "JumpStory feature launched - Earn more with content delivery tasks.",
-        date: "Mar 2026",
-        sourceUrl: "https://twitter.com/HoneyGainTeam/status/example",
-        sourceName: "Twitter",
-        sourceIcon: "𝕏"
-      },
-      {
-        project: "Bless Network",
-        type: "update",
-        content: "Validator node registration open. Limited spots available.",
-        date: "Mar 2026",
-        sourceUrl: "https://discord.com/channels/bless-network/example",
-        sourceName: "Discord",
-        sourceIcon: "💬"
-      },
-      {
-        project: "NodePay",
-        type: "update",
-        content: "NPT token economy model announced. Accumulate points before launch.",
-        date: "Mar 2026",
-        sourceUrl: "https://nodepay.ai/learn",
-        sourceName: "Official Website",
-        sourceIcon: "🌐"
-      },
-      {
-        project: "DataHive",
-        type: "update",
-        content: "Platform v2.0 released with new annotation tools and higher payouts.",
-        date: "Feb 2026",
-        sourceUrl: "https://datahive.ai",
-        sourceName: "Official Website",
-        sourceIcon: "🌐"
-      },
-      {
-        project: "Perceptrons",
-        type: "update",
-        content: "Testnet v2 public beta launched. Join compute network now.",
-        date: "Mar 2026",
-        sourceUrl: "https://medium.com/perceptrons-xyz/example",
-        sourceName: "Medium",
-        sourceIcon: "📝"
-      }
+      // Example format (commented out - replace with real news):
+      // {
+      //   project: "ProjectName",
+      //   type: "update", // update, funding, alert, task
+      //   content: "Real news content here",
+      //   date: "2026-03-30",
+      //   sourceUrl: "https://twitter.com/official/status/123456",
+      //   sourceName: "Twitter",
+      //   sourceIcon: "𝕏"
+      // }
     ];
 
     // Project Data
@@ -1272,7 +1243,16 @@
 
     function renderAll() {
       // Render news
-      document.getElementById('newsGrid').innerHTML = projectNews.map(renderNewsCard).join('');
+      if (projectNews.length > 0) {
+        document.getElementById('newsGrid').innerHTML = projectNews.map(renderNewsCard).join('');
+        document.getElementById('newsSection').style.display = 'block';
+      } else {
+        document.getElementById('newsGrid').innerHTML = `
+          <div class="empty-news">
+            <p>No verified news yet. News will be added when verified sources are found.</p>
+          </div>
+        `;
+      }
       
       // Filter by category
       const networkProjects = projects.filter(p => p.category === 'network');
