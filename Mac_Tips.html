@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mac 使用技巧速查表</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif;
+      background: #1c1c1e;
+      color: #f5f5f7;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6dd5fa, #2980b9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: #8e8e93;
+      font-size: 0.9rem;
+    }
+
+    .search-box {
+      margin-bottom: 24px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid #3a3a3c;
+      background: #2c2c2e;
+      color: #f5f5f7;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: #0a84ff;
+    }
+
+    .search-box input::placeholder {
+      color: #636366;
+    }
+
+    .category-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .category-tabs button {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 1px solid #3a3a3c;
+      background: #2c2c2e;
+      color: #8e8e93;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .category-tabs button:hover,
+    .category-tabs button.active {
+      background: #0a84ff;
+      border-color: #0a84ff;
+      color: #fff;
+    }
+
+    .table-wrapper {
+      background: #2c2c2e;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: #3a3a3c;
+    }
+
+    thead th {
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #8e8e93;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #3a3a3c;
+      transition: background 0.15s;
+    }
+
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: #3a3a3c;
+    }
+
+    tbody tr.hidden {
+      display: none;
+    }
+
+    tbody td {
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+
+    td:nth-child(1) {
+      width: 30%;
+      color: #ff9f0a;
+      font-weight: 500;
+    }
+
+    td:nth-child(2) {
+      width: 45%;
+      color: #f5f5f7;
+    }
+
+    td:nth-child(3) {
+      width: 25%;
+      color: #30d158;
+      font-size: 0.8rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: #3a3a3c;
+      font-size: 0.75rem;
+      color: #8e8e93;
+    }
+
+    .section-title {
+      margin: 32px 0 12px;
+      font-size: 1.1rem;
+      color: #0a84ff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: "";
+      display: block;
+      width: 4px;
+      height: 18px;
+      background: #0a84ff;
+      border-radius: 2px;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      color: #636366;
+      display: none;
+    }
+
+    .no-results.show {
+      display: block;
+    }
+
+    .stats {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: #2c2c2e;
+      border-radius: 12px;
+      padding: 12px 20px;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .stat-card .num {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0a84ff;
+    }
+
+    .stat-card .label {
+      font-size: 0.75rem;
+      color: #8e8e93;
+      margin-top: 2px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #636366;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 600px) {
+      td:nth-child(1) { width: 35%; }
+      td:nth-child(2) { width: 40%; }
+      td:nth-child(3) { width: 25%; }
+
+      thead th, tbody td {
+        padding: 10px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <h1>🍎 Mac 使用技巧速查表</h1>
+      <p>快捷键 · 设置 · 高效技巧 · 持续更新</p>
+    </header>
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="num">4</div>
+        <div class="label">技巧分类</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">50+</div>
+        <div class="label">实用技巧</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">⌘</div>
+        <div class="label">命令键 = ⌘</div>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="🔍 搜索快捷键或功能名称...">
+    </div>
+
+    <div class="category-tabs">
+      <button class="active" data-filter="all">全部</button>
+      <button data-filter="shortcut">⌨️ 快捷键</button>
+      <button data-filter="setting">⚙️ 系统设置</button>
+      <button data-filter="hidden">🔒 隐藏技巧</button>
+      <button data-filter="terminal">💻 终端命令</button>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>快捷键 / 功能</th>
+            <th>说明</th>
+            <th>分类</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+
+          <!-- 一、系统基础快捷键 -->
+          <tr class="section-header">
+            <td colspan="3" class="section-title">一、系统基础快捷键</td>
+          </tr>
+
+          <tr data-category="shortcut">
+            <td>⌘ + C</td>
+            <td>复制选中内容（文字/文件/图片均可）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + V</td>
+            <td>粘贴复制的内容</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + X</td>
+            <td>剪切（仅支持文件/文字）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Z</td>
+            <td>撤销上一步操作</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Shift + Z</td>
+            <td>重做（撤销的撤销）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + A</td>
+            <td>全选</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + S</td>
+            <td>保存当前文件</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + F</td>
+            <td>在当前窗口内搜索 / 查找</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + P</td>
+            <td>打印当前文档</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Q</td>
+            <td>退出当前应用程序</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + W</td>
+            <td>关闭当前窗口（但不退出应用）</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + H</td>
+            <td>隐藏当前应用窗口（App 还在运行）</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + M</td>
+            <td>最小化当前窗口到 Dock</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+
+          <!-- 二、窗口与管理 -->
+          <tr class="section-header">
+            <td colspan="3" class="section-title">二、窗口与管理</td>
+          </tr>
+
+          <tr data-category="shortcut">
+            <td>⌘ + Tab</td>
+            <td>快速切换到上一个使用的应用程序</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + `</td>
+            <td>在同一个应用的不同窗口间切换（如多个 Chrome 窗口）</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + , (逗号)</td>
+            <td>打开当前应用的设置/偏好设置</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>Control + ↑</td>
+            <td>打开调度中心（Mission Control），鸟瞰所有窗口和桌面</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>Control + ← / →</td>
+            <td>切换到左边 / 右边的桌面（Spaces）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>Control + ↓</td>
+            <td>显示当前应用所有窗口（App Exposé）</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Space</td>
+            <td>打开聚焦搜索（Spotlight），输入文件名、应用名即可快速搜索</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Option + Space</td>
+            <td>直接打开 Finder 窗口进行文件搜索</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Option + D</td>
+            <td>显示 / 隐藏 Dock 栏</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Option + Esc</td>
+            <td>强制退出应用程序（类似 Windows 的 Ctrl+Alt+Del）</td>
+            <td><span class="tag">急救</span></td>
+          </tr>
+
+          <!-- 三、文件和Finder -->
+          <tr class="section-header">
+            <td colspan="3" class="section-title">三、文件和 Finder 技巧</td>
+          </tr>
+
+          <tr data-category="shortcut">
+            <td>⌘ + O</td>
+            <td>打开选中文件（用默认应用打开）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + I</td>
+            <td>显示文件简介（右键"显示简介"也可以）</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Delete</td>
+            <td>将选中文件移至废纸篓</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Shift + Delete</td>
+            <td>清空废纸篓（需确认）</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Shift + A / U / D / D</td>
+            <td>快速打开Applications /  Utilities / 桌面 / 文稿文件夹</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + L</td>
+            <td>为选中文件/文件夹创建替身（Alias，类似快捷方式）</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + R</td>
+            <td>在 Finder 中查看原始路径（对使用替身很有用）</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Option + V</td>
+            <td>移动文件（相当于"剪切 + 粘贴"，而非复制）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + C → ⌘ + Option + V</td>
+            <td>复制文件并在目标位置粘贴（不保留原文件）</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>空格键</td>
+            <td>选中文件后按空格，可快速预览（图片/PDF/视频均可）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + 点击 Dock 图标</td>
+            <td>打开该应用对应的 Finder 目录</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>拖动文件到路径栏</td>
+            <td>将文件拖到 Finder 窗口顶部路径栏上，快速导航到该目录</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+
+          <!-- 四、文字处理 -->
+          <tr class="section-header">
+            <td colspan="3" class="section-title">四、文字处理技巧</td>
+          </tr>
+
+          <tr data-category="shortcut">
+            <td>⌘ + B</td>
+            <td>文字加粗（Bold）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + I</td>
+            <td>文字斜体（Italic）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + U</td>
+            <td>文字下划线（Underline）</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + K</td>
+            <td>添加网页链接</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + [ 和 ⌘ + ]</td>
+            <td>缩进减少 / 增加（类似格式化代码）</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + \ </td>
+            <td>在支持的应用中清除格式（粘贴纯文本）</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Shift + ↑ / ↓</td>
+            <td>向上/下选择一整段文字</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>Option + ← / →</td>
+            <td>按单词跳跃光标位置（比只用 ← → 更快）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + ← / →</td>
+            <td>光标跳到行首 / 行尾</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Delete</td>
+            <td>删除光标所在行光标之前的所有文字</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+
+          <!-- 五、截图 & 录屏 -->
+          <tr class="section-header">
+            <td colspan="3" class="section-title">五、截图 & 录屏</td>
+          </tr>
+
+          <tr data-category="shortcut">
+            <td>⌘ + Shift + 3</td>
+            <td>截取整个屏幕（保存到桌面）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Shift + 4</td>
+            <td>截取自定义区域（鼠标拖动选择区域）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Shift + 4 + 空格</td>
+            <td>截取单个窗口（鼠标变为相机图标，点击窗口）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Shift + 5</td>
+            <td>打开截图工具栏（可录屏、设置保存位置、计时等）</td>
+            <td><span class="tag">高频</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>Control + ⌘ + Shift + 3/4</td>
+            <td>截图但不保存到文件，而是复制到剪贴板（可在其他地方 ⌘ + V 粘贴）</td>
+            <td><span class="tag">常用</span></td>
+          </tr>
+          <tr data-category="shortcut">
+            <td>⌘ + Shift + 5 → 选项</td>
+            <td>设置截图保存位置（桌面/文稿/剪贴板/邮件等）</td>
+            <td><span class="tag">设置</span></td>
+          </tr>
+
+          <!-- 六、触控板手势 -->
+          <tr class="section-header">
+            <td colspan="3" class="section-title">六、触控板手势（强烈建议开启）</td>
+          </tr>
+
+          <tr data-category="setting">
+            <td>三指向上滑动</td>
+            <td>打开调度中心，鸟瞰所有窗口</td>
+            <td><span class="tag">手势</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>三指向下滑动</td>
+            <td>显示当前应用所有窗口</td>
+            <td><span class="tag">手势</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>三指左右滑动</td>
+            <td>切换上一个/下一个应用（类似 ⌘ + Tab）</td>
+            <td><span class="tag">手势</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>两指捏合</td>
+            <td>打开启动台（类似手机桌面）</td>
+            <td><span class="tag">手势</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>两指轻点右键</td>
+            <td>弹出右键菜单（不需要按右键）</td>
+            <td><span class="tag">手势</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>两指向右滑动</td>
+            <td>返回上一级（在 Finder 和 Safari 中）</td>
+            <td><span class="tag">手势</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>两指长按</td>
+            <td>触发用力长按（类似 3D Touch）</td>
+            <td><span class="tag">手势</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>轻拍触控板</td>
+            <td>无需按下，只要"轻拍"即可触发点击（更省力）</td>
+            <td><span class="tag">设置</span></td>
+          </tr>
+
+          <!-- 七、系统设置优化 -->
+          <tr class="section-header">
+            <td colspan="3" class="section-title">七、系统设置优化（值得一改）</td>
+          </tr>
+
+          <tr data-category="setting">
+            <td>系统设置 → 触控板 → 轻拍来点按</td>
+            <td>开启后无需用力按压，轻拍即可点击，省力又保护触控板</td>
+            <td><span class="tag">强烈推荐</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>系统设置 → 触控板 → 更多手势 → 调度中心</td>
+            <td>三指向上滑动打开调度中心，比快捷键更直观</td>
+            <td><span class="tag">强烈推荐</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>系统设置 → 辅助功能 → 指针控制 → 跟踪速度</td>
+            <td>调高指针跟踪速度，鼠标操作更跟手</td>
+            <td><span class="tag">推荐</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>系统设置 → 通用 → 关于 → 存储空间 → 管理</td>
+            <td>查看存储空间使用情况，清理无用文件</td>
+            <td><span class="tag">推荐</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>系统设置 → 通用 → AirDrop 与 Handoff</td>
+            <td>开启 AirDrop 可与其他苹果设备无线传输文件</td>
+            <td><span class="tag">推荐</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>Finder → 偏好设置 → 边栏</td>
+            <td>自定义 Finder 侧边栏显示哪些常用文件夹</td>
+            <td><span class="tag">个性化</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>系统设置 → 键盘 → 键盘快捷键</td>
+            <td>自定义或查看所有系统快捷键</td>
+            <td><span class="tag">进阶</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>系统设置 → 电池 → 低电量模式</td>
+            <td>笔记本建议插电时关闭低电量模式，性能更好</td>
+            <td><span class="tag">性能</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>系统设置 → 显示器 → 夜览</td>
+            <td>开启自动护眼模式，根据日出日落调节屏幕色温</td>
+            <td><span class="tag">护眼</span></td>
+          </tr>
+
+          <!-- 八、效率提升隐藏技巧 -->
+          <tr class="section-header">
+            <td colspan="3" class="section-title">八、效率提升隐藏技巧</td>
+          </tr>
+
+          <tr data-category="hidden">
+            <td>⌘ + Shift + T</td>
+            <td>重新打开刚才关闭的标签页（Chrome / Safari / Finder 均支持）</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+          <tr data-category="hidden">
+            <td>⌘ + Option + E</td>
+            <td>清空聚焦搜索的历史记录</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+          <tr data-category="hidden">
+            <td>⌘ + Shift + .</td>
+            <td>在 Finder 中显示隐藏文件（以 . 开头的文件）</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+          <tr data-category="hidden">
+            <td>在 App 中双指长按文本</td>
+            <td>触发生成自然语言查找（Siri 建议的相关内容）</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+          <tr data-category="hidden">
+            <td>⌘ + Option + I</td>
+            <td>在 Safari 或 Chrome 中打开开发者工具</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+          <tr data-category="hidden">
+            <td>拖动文件时按 Option</td>
+            <td>拖动文件时按住 Option，会自动复制而非移动</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+          <tr data-category="hidden">
+            <td>⌘ + 点击菜单项</td>
+            <td>点击菜单栏中任何一项时按住 ⌘，可以看到完整的菜单路径</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+          <tr data-category="hidden">
+            <td>⌘ + 音量/亮度图标</td>
+            <td>点击菜单栏音量或亮度图标时按住 ⌘，可以微调（1/4 档）</td>
+            <td><span class="tag">隐藏</span></td>
+          </tr>
+
+          <!-- 九、终端命令 -->
+          <tr class="section-header">
+            <td colspan="3" class="section-title">九、实用终端命令（Terminal）</td>
+          </tr>
+
+          <tr data-category="terminal">
+            <td>defaults write com.apple.dock tilesize -int 48</td>
+            <td>将 Dock 图标尺寸调整为 48 像素（数值可改，改后需运行 killall Dock）</td>
+            <td><span class="tag">终端</span></td>
+          </tr>
+          <tr data-category="terminal">
+            <td>killall Dock</td>
+            <td>重启 Dock（修改 Dock 设置后执行以生效）</td>
+            <td><span class="tag">终端</span></td>
+          </tr>
+          <tr data-category="terminal">
+            <td>chflags hidden ~/文件路径</td>
+            <td>隐藏指定文件或文件夹（ Finder 中不显示）</td>
+            <td><span class="tag">终端</span></td>
+          </tr>
+          <tr data-category="terminal">
+            <td>chflags nohidden ~/文件路径</td>
+            <td>取消隐藏文件/文件夹</td>
+            <td><span class="tag">终端</span></td>
+          </tr>
+          <tr data-category="terminal">
+            <td>caffeinate -u -t 3600</td>
+            <td>防止 Mac 在接下来 1 小时内进入睡眠（适合挂机）</td>
+            <td><span class="tag">终端</span></td>
+          </tr>
+          <tr data-category="terminal">
+            <td>caffeinate -s</td>
+            <td>防止 Mac 在插电状态下进入睡眠（直到断电）</td>
+            <td><span class="tag">终端</span></td>
+          </tr>
+          <tr data-category="terminal">
+            <td>sudo pmset -a lessbright 1</td>
+            <td>低电量时自动降低亮度（需输入管理员密码）</td>
+            <td><span class="tag">终端</span></td>
+          </tr>
+          <tr data-category="terminal">
+            <td>rm -rf ~/.Trash/*</td>
+            <td>清空废纸篓（慎用，会彻底删除）</td>
+            <td><span class="tag">终端</span></td>
+          </tr>
+          <tr data-category="terminal">
+            <td>diskutil list</td>
+            <td>查看所有挂载的磁盘和分区</td>
+            <td><span class="tag">终端</span></td>
+          </tr>
+          <tr data-category="terminal">
+            <td>top</td>
+            <td>查看当前系统资源占用（CPU/内存），按 Q 退出</td>
+            <td><span class="tag">终端</span></td>
+          </tr>
+          <tr data-category="terminal">
+            <td>curl ifconfig.me</td>
+            <td>查看本机公网 IP 地址</td>
+            <td><span class="tag">终端</span></td>
+          </tr>
+          <tr data-category="terminal">
+            <td>mdls ~/文件名</td>
+            <td>查看文件的所有元数据（创建时间、修改时间等）</td>
+            <td><span class="tag">终端</span></td>
+          </tr>
+
+          <!-- 十、安全与隐私 -->
+          <tr class="section-header">
+            <td colspan="3" class="section-title">十、安全与隐私</td>
+          </tr>
+
+          <tr data-category="setting">
+            <td>系统设置 → 触控 ID 与密码</td>
+            <td>设置指纹解锁，解锁 App 和 Apple Pay</td>
+            <td><span class="tag">安全</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>系统设置 → 隐私与安全性 → 文件保险箱</td>
+            <td>开启 FileVault 全盘加密，防止硬盘丢失后数据泄露</td>
+            <td><span class="tag">安全</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>系统设置 → 隐私与安全性 → 定位服务</td>
+            <td>管理哪些应用可以使用位置信息，关闭不需要的</td>
+            <td><span class="tag">隐私</span></td>
+          </tr>
+          <tr data-category="setting">
+            <td>系统设置 → 通知 → 登录通知</td>
+            <td>开启后当账户有新登录时会收到通知</td>
+            <td><span class="tag">安全</span></td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <div class="no-results" id="noResults">
+        未找到匹配的技巧，试试其他关键词 🔍
+      </div>
+    </div>
+
+    <footer>
+      <p>🍎 Mac 使用技巧速查表 · 持续更新中</p>
+      <p style="margin-top: 4px; font-size: 0.75rem; color: #48484a;">快捷键中 ⌘ = Command 键，⌥ = Option 键，⌃ = Control 键</p>
+    </footer>
+  </div>
+
+  <script>
+    // 搜索功能
+    const searchInput = document.getElementById('searchInput');
+    const rows = document.querySelectorAll('tbody tr[data-category]');
+    const noResults = document.getElementById('noResults');
+    const tabButtons = document.querySelectorAll('.category-tabs button');
+
+    let currentFilter = 'all';
+
+    function filterRows() {
+      const query = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        const matchCategory = currentFilter === 'all' || row.dataset.category === currentFilter;
+        const matchSearch = query === '' || text.includes(query);
+
+        if (matchCategory && matchSearch) {
+          row.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          row.classList.add('hidden');
+        }
+      });
+
+      noResults.classList.toggle('show', visibleCount === 0);
+    }
+
+    searchInput.addEventListener('input', filterRows);
+
+    // 分类标签切换
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        filterRows();
+      });
+    });
+
+    // 初始化
+    filterRows();
+  </script>
+</body>
+</html>
